@@ -1,0 +1,120 @@
+import type { Question } from "@/features/questions";
+
+const meta = {
+  courseId: "cot-4400",
+  lessonId: "l12-data-structures",
+  topicId: "hash-tables",
+} as const;
+
+export const hashTablesQuestions: Question[] = [
+  {
+    ...meta,
+    id: "l12-hash-mcq-range",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "A hash function maps domain elements to integers in",
+    options: [
+      "$1..n$",
+      "$0..m-1$ (array size minus one)",
+      "$0..n!$",
+      "Any real number",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Maps elements to integers $0$ to size of array minus one ($m-1$). Must take $\\Theta(1)$ time.",
+    sourceReference: "L12.DataStructures.pptx, slide 31",
+    tags: ["hash-function"],
+  },
+  {
+    ...meta,
+    id: "l12-hash-mcq-time",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "The hash function itself must take",
+    options: ["$\\Theta(n)$", "$\\Theta(\\lg n)$", "$\\Theta(1)$", "$\\Theta(m)$"],
+    correctIndex: 2,
+    explanation: "Lecture requirement: hash function must take $\\Theta(1)$ time.",
+    sourceReference: "L12.DataStructures.pptx, slide 31",
+    tags: ["hash-function"],
+  },
+  {
+    ...meta,
+    id: "l12-hash-mcq-chaining",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "Separate chaining resolves collisions by",
+    options: [
+      "Scanning for the next open array slot only",
+      "Making each location the head of a linked list",
+      "Sorting the entire table after every insert",
+      "Rejecting the second key",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Each location is the head of a linked list; append the new element. Never “need” to reallocate.",
+    sourceReference: "L12.DataStructures.pptx, slide 32",
+    tags: ["chaining"],
+  },
+  {
+    ...meta,
+    id: "l12-hash-mcq-open",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "Open addressing resolves collisions by",
+    options: [
+      "Storing a linked list at the bucket",
+      "Finding the next open location and inserting there",
+      "Doubling $m$ on every collision",
+      "Hashing into a BST",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Find the next open location; may scan quadratically to avoid congestion. No links; deleting is tricky.",
+    sourceReference: "L12.DataStructures.pptx, slide 32",
+    tags: ["open-addressing"],
+  },
+  {
+    ...meta,
+    id: "l12-hash-mcq-search-worst",
+    type: "mcq",
+    difficulty: "medium",
+    prompt: "Worst-case Search($x$) in a hash table (lecture)?",
+    options: ["$\\Theta(1)$", "$\\Theta(\\lg n)$", "$\\Theta(n)$", "$\\Theta(m \\lg n)$"],
+    correctIndex: 2,
+    explanation: "Hash, then scan the list (or until empty). Worst case: $\\Theta(n)$.",
+    sourceReference: "L12.DataStructures.pptx, slide 33",
+    tags: ["search", "worst-case"],
+  },
+  {
+    ...meta,
+    id: "l12-hash-multi",
+    type: "multi_select",
+    difficulty: "medium",
+    prompt: "Select statements that match the L12 hash-table slides.",
+    options: [
+      "Most hash functions use modulus to ensure range",
+      "Both collision strategies may require scanning to find an element",
+      "Worst-case Delete is $\\Theta(n)$",
+      "Worst-case Search is always $\\Theta(1)$",
+    ],
+    correctIndices: [0, 1, 2],
+    explanation:
+      "Modulus, scanning, and $\\Theta(n)$ Delete/Search in the worst case. Search is not always $\\Theta(1)$ in L12’s worst-case table.",
+    sourceReference: "L12.DataStructures.pptx, slides 31–33",
+    tags: ["collisions"],
+  },
+  {
+    ...meta,
+    id: "l12-hash-cx-insert-chain",
+    type: "complexity",
+    difficulty: "medium",
+    format: "choice",
+    prompt: "Worst-case Insert for separate chaining in the lecture complexity table?",
+    options: ["$O(n)$", "$O(1)$", "$O(\\lg n)$", "$O(m + n^2)$"],
+    correctIndex: 1,
+    explanation:
+      "Table: Separate chaining Insert $O(1)$; open addressing Insert $O(n)$. Build for chaining $O(m+n)$.",
+    sourceReference: "L12.DataStructures.pptx, slide 34",
+    tags: ["insert", "chaining"],
+  },
+];

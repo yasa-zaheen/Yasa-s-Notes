@@ -1,0 +1,105 @@
+import type { Question } from "@/features/questions";
+
+const meta = {
+  courseId: "cot-4400",
+  lessonId: "l12-data-structures",
+  topicId: "sets-arrays",
+} as const;
+
+export const setsArraysQuestions: Question[] = [
+  {
+    ...meta,
+    id: "l12-set-mcq-search-unsorted",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "Search($x$) in an unsorted-array set is",
+    options: ["$\\Theta(1)$", "$\\Theta(\\lg n)$", "$\\Theta(n)$", "$\\Theta(n \\lg n)$"],
+    correctIndex: 2,
+    explanation: "Unsorted array: linear search → $\\Theta(n)$.",
+    sourceReference: "L12.DataStructures.pptx, slide 25",
+    tags: ["search"],
+  },
+  {
+    ...meta,
+    id: "l12-set-mcq-search-sorted",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "Search($x$) in a sorted-array set is",
+    options: ["$\\Theta(1)$", "$\\Theta(\\lg n)$", "$\\Theta(n)$", "$\\Theta(n^2)$"],
+    correctIndex: 1,
+    explanation: "Sorted array: binary search → $\\Theta(\\lg n)$.",
+    sourceReference: "L12.DataStructures.pptx, slide 25",
+    tags: ["search"],
+  },
+  {
+    ...meta,
+    id: "l12-set-mcq-insert-unsorted",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "Insert($x$) into an unsorted-array set is",
+    options: ["$\\Theta(n)$", "$\\Theta(1)$, amortized", "$\\Theta(\\lg n)$", "$\\Theta(n \\lg n)$"],
+    correctIndex: 1,
+    explanation:
+      "Unsorted insert: append (double capacity as needed) → $\\Theta(1)$ amortized.",
+    sourceReference: "L12.DataStructures.pptx, slide 25",
+    tags: ["insert"],
+  },
+  {
+    ...meta,
+    id: "l12-set-mcq-delete-sorted",
+    type: "mcq",
+    difficulty: "medium",
+    prompt: "Delete($x$) from a sorted-array set is",
+    options: ["$\\Theta(1)$", "$\\Theta(\\lg n)$", "$\\Theta(n)$", "$\\Theta(n \\lg n)$"],
+    correctIndex: 2,
+    explanation: "Keeping the array sorted requires shifting → $\\Theta(n)$.",
+    sourceReference: "L12.DataStructures.pptx, slide 25",
+    tags: ["delete"],
+  },
+  {
+    ...meta,
+    id: "l12-set-mcq-delete-unsorted",
+    type: "mcq",
+    difficulty: "medium",
+    prompt: "After the index is known, unsorted-array Delete($x$) is $\\Theta(1)$ because lecture",
+    options: [
+      "Rebuilds the whole array",
+      "Swaps the element to the end and decrements size",
+      "Uses binary search then shifts left",
+      "Marks the slot NIL and leaves a hole forever",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Deletion: swap all elements till to the end (swap-to-end) and decrement size.",
+    sourceReference: "L12.DataStructures.pptx, slide 25",
+    tags: ["delete"],
+  },
+  {
+    ...meta,
+    id: "l12-set-multi",
+    type: "multi_select",
+    difficulty: "medium",
+    prompt: "Which are $\\Theta(1)$ on a sorted array (lecture table)?",
+    options: ["Min()", "Max()", "Predecessor($x$)", "Search($x$)"],
+    correctIndices: [0, 1, 2],
+    explanation:
+      "Sorted array: Min, Max, Predecessor, Successor are $\\Theta(1)$. Search is $\\Theta(\\lg n)$.",
+    sourceReference: "L12.DataStructures.pptx, slide 25",
+    tags: ["sorted-array"],
+  },
+  {
+    ...meta,
+    id: "l12-set-cx-tradeoff",
+    type: "complexity",
+    difficulty: "medium",
+    format: "choice",
+    prompt:
+      "Compared with unsorted arrays, sorted arrays make Search faster but Insert becomes",
+    options: ["$\\Theta(1)$ amortized", "$\\Theta(\\lg n)$", "$\\Theta(n)$", "$\\Theta(n \\lg n)$"],
+    correctIndex: 2,
+    explanation:
+      "Search jumps from $\\Theta(n)$ to $\\Theta(\\lg n)$; Insert goes from $\\Theta(1)$ amortized to $\\Theta(n)$.",
+    sourceReference: "L12.DataStructures.pptx, slide 25",
+    tags: ["tradeoff", "complexity"],
+  },
+];

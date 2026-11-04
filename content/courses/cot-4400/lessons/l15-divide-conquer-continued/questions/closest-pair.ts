@@ -1,0 +1,157 @@
+import type { Question } from "@/features/questions";
+
+const meta = {
+  courseId: "cot-4400",
+  lessonId: "l15-divide-conquer-continued",
+  topicId: "closest-pair",
+} as const;
+
+export const closestPairQuestions: Question[] = [
+  {
+    ...meta,
+    id: "l15-cp-mcq-brute",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "Brute-force closest pair over $n$ points takes:",
+    options: ["$O(n)$", "$O(n \\log n)$", "$O(n^2)$", "$O(n^3)$"],
+    correctIndex: 2,
+    explanation: "All pairs are checked; lecture states $O(n^2)$ (slide 9).",
+    tags: ["brute-force"],
+    sourceReference: "L15.Divide&ConquerContinued.pptx, slide 9",
+  },
+  {
+    ...meta,
+    id: "l15-cp-mcq-presort",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "Closest-pair preprocessing sorts the input primarily by:",
+    options: [
+      "$x$-coordinates",
+      "Polar angle about the origin only",
+      "Euclidean distance to $(0,0)$",
+      "Hash of point labels",
+    ],
+    correctIndex: 0,
+    explanation: "Slide 10: sort according to $x$ coordinates (also maintain $y$-order for later).",
+    tags: ["preprocessing"],
+    sourceReference: "L15.Divide&ConquerContinued.pptx, slide 10",
+  },
+  {
+    ...meta,
+    id: "l15-cp-mcq-base",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "Base case size handled by brute force in the lecture closest-pair D&C?",
+    options: [
+      "$2 \\le n \\le 3$ (also written $n \\le 3$)",
+      "$n \\le 7$ only",
+      "$n = 1$ only",
+      "$n \\ge 100$",
+    ],
+    correctIndex: 0,
+    explanation: "If 2–3 points (slides say $2\\le n\\le 3$ / $n\\le 3$), use brute force.",
+    tags: ["base-case"],
+    sourceReference: "L15.Divide&ConquerContinued.pptx, slides 10, 15",
+  },
+  {
+    ...meta,
+    id: "l15-cp-mcq-strip",
+    type: "mcq",
+    difficulty: "medium",
+    prompt:
+      "After $d=\\min(d_L,d_R)$, which points enter the strip?",
+    options: [
+      "Points with $x$-coordinate within distance $d$ of the middle vertical line",
+      "All points in the left half only",
+      "Only the two median points",
+      "Points farther than $d$ from the midline",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Slides 12/16: strip points satisfy $|point.x - mid_x| < d$ (closer than $d$ to the dividing line).",
+    tags: ["strip"],
+    sourceReference: "L15.Divide&ConquerContinued.pptx, slides 12, 16",
+  },
+  {
+    ...meta,
+    id: "l15-cp-mcq-seven",
+    type: "mcq",
+    difficulty: "medium",
+    prompt:
+      "In \`ClosestInStrip\`, each point is compared with how many following strip points (lecture)?",
+    options: ["Next 2", "Next 7", "Next $n/2$", "All remaining $n$ points"],
+    correctIndex: 1,
+    explanation:
+      "Slide 18: compare each point with the next 7 points in the $y$-sorted strip.",
+    tags: ["strip"],
+    sourceReference: "L15.Divide&ConquerContinued.pptx, slide 18",
+  },
+  {
+    ...meta,
+    id: "l15-cp-multi",
+    type: "multi_select",
+    difficulty: "medium",
+    prompt: "Select lecture facts about closest pair.",
+    options: [
+      "Left/right minima alone may miss a closer crossing pair",
+      "The strip is taken from points sorted by $y$",
+      "Strip comparison is argued to take $O(n)$ time",
+      "The algorithm needs no sorting whatsoever",
+    ],
+    correctIndices: [0, 1, 2],
+    explanation:
+      "Crossing pairs motivate the strip; \`Py\` / strip sorted by $y$; strip pass $O(n)$. Sorting by $x$ and $y$ is required preprocessing.",
+    tags: ["closest-pair"],
+    sourceReference: "L15.Divide&ConquerContinued.pptx, slides 11–18",
+  },
+  {
+    ...meta,
+    id: "l15-cp-cx",
+    type: "complexity",
+    difficulty: "medium",
+    format: "choice",
+    prompt: "$T(n)=2T(n/2)+O(n)$ for closest pair solves to:",
+    options: ["$O(n)$", "$O(n \\log n)$", "$O(n^2)$", "$O(n^3)$"],
+    correctIndex: 1,
+    explanation: "Slide 22: solving the recurrence gives $O(n\\log n)$.",
+    tags: ["complexity", "recurrence"],
+    sourceReference: "L15.Divide&ConquerContinued.pptx, slide 22",
+  },
+  {
+    ...meta,
+    id: "l15-cp-mcq-proof",
+    type: "mcq",
+    difficulty: "hard",
+    prompt:
+      "Proof idea that only $O(1)$ strip neighbors matter: eight small rectangles each have diagonal",
+    options: [
+      "$\\sqrt{(d/2)^2+(d/2)^2} < d$",
+      "$2d$",
+      "$d^2$",
+      "$n/2$",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Slide 19: each congruent rectangle of side $\\le d/2$ has diagonal $< d$, so at most one point of interest each.",
+    tags: ["proof"],
+    sourceReference: "L15.Divide&ConquerContinued.pptx, slide 19",
+  },
+  {
+    ...meta,
+    id: "l15-cp-mcq-gap",
+    type: "mcq",
+    difficulty: "medium",
+    prompt:
+      "Why is $d=\\min(d_L,d_R)$ not necessarily the global minimum yet?",
+    options: [
+      "A closer pair can have points on opposite sides of the separating line",
+      "Brute force on 2–3 points is incorrect",
+      "Sorting by $x$ destroys distances",
+      "Master Theorem does not apply to geometry",
+    ],
+    correctIndex: 0,
+    explanation: "Slide 11 states exactly that crossing-line pairs may be closer.",
+    tags: ["divide-and-conquer"],
+    sourceReference: "L15.Divide&ConquerContinued.pptx, slide 11",
+  },
+];

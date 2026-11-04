@@ -1,0 +1,128 @@
+import type { Question } from "@/features/questions";
+
+const meta = {
+  courseId: "cot-4400",
+  lessonId: "l16-greedy",
+  topicId: "make-change",
+} as const;
+
+export const makeChangeQuestions: Question[] = [
+  {
+    ...meta,
+    id: "l16-mc-mcq-goal",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "Make-change problem goal in lecture?",
+    options: [
+      "Minimize the total number of coins returned",
+      "Maximize the number of coins returned",
+      "Minimize matrix multiplications",
+      "Maximize hull extreme points",
+    ],
+    correctIndex: 0,
+    explanation: "Slide 12: minimize total number of coins returned as change.",
+    tags: ["make-change"],
+    sourceReference: "L16.GreedyApproach.pptx, slide 12",
+  },
+  {
+    ...meta,
+    id: "l16-mc-mcq-supply",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "Coin-supply assumption?",
+    options: [
+      "Unlimited supply of coins",
+      "Exactly one of each denomination",
+      "No coins larger than 5¢",
+      "Coins must form a geometric series",
+    ],
+    correctIndex: 0,
+    explanation: "Slide 12 assumption: unlimited supply.",
+    tags: ["make-change"],
+    sourceReference: "L16.GreedyApproach.pptx, slide 12",
+  },
+  {
+    ...meta,
+    id: "l16-mc-mcq-selection",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "Greedy selection criterion for make-change?",
+    options: [
+      "Largest coin (by value)",
+      "Smallest coin always",
+      "Random coin",
+      "Coin closest to $\\sqrt{n}$",
+    ],
+    correctIndex: 0,
+    explanation: "Slide 13: look for the largest coin; criterion is value.",
+    tags: ["selection"],
+    sourceReference: "L16.GreedyApproach.pptx, slide 13",
+  },
+  {
+    ...meta,
+    id: "l16-mc-mcq-feasibility",
+    type: "mcq",
+    difficulty: "easy",
+    prompt: "Feasibility check rejects a coin when:",
+    options: [
+      "Adding it would make change exceed the amount owed",
+      "Its value is a power of two",
+      "It is the largest remaining coin",
+      "The solution set is still empty",
+    ],
+    correctIndex: 0,
+    explanation: "Slide 13 feasibility: must not exceed amount owed.",
+    tags: ["feasibility"],
+    sourceReference: "L16.GreedyApproach.pptx, slide 13",
+  },
+  {
+    ...meta,
+    id: "l16-mc-mcq-12cent",
+    type: "mcq",
+    difficulty: "medium",
+    prompt:
+      "Lecture questions a 12¢ coin for amount 16¢ to illustrate that greedy:",
+    options: [
+      "May fail to be optimal for weird denominations",
+      "Always fails for US coins",
+      "Requires Strassen multiplication",
+      "Needs $n!$ schedules",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Slide 14 asks whether the solution is optimal with a 12¢ coin — greedy can be suboptimal for unusual systems.",
+    tags: ["counterexample"],
+    sourceReference: "L16.GreedyApproach.pptx, slide 14",
+  },
+  {
+    ...meta,
+    id: "l16-mc-multi",
+    type: "multi_select",
+    difficulty: "medium",
+    prompt: "In the while-not-solved make-change loop, which steps appear?",
+    options: [
+      "Grab the largest remaining coin",
+      "Reject if adding exceeds amount owed",
+      "Add coin and check if totals equal amount owed",
+      "Sort jobs by nonincreasing profit",
+    ],
+    correctIndices: [0, 1, 2],
+    explanation:
+      "Slides 15–16 show selection/feasibility/solution checks. Profit sorting is deadline scheduling.",
+    tags: ["pseudocode"],
+    sourceReference: "L16.GreedyApproach.pptx, slides 15–16",
+  },
+  {
+    ...meta,
+    id: "l16-mc-mcq-27",
+    type: "mcq",
+    difficulty: "medium",
+    prompt:
+      "With coins 50, 10, 5, 2, 1 for 27¢, after rejecting 50 the first coin taken is:",
+    options: ["10", "5", "2", "1"],
+    correctIndex: 0,
+    explanation: "Slide 17 table: first opted coin is 10 (27→17).",
+    tags: ["worked-example"],
+    sourceReference: "L16.GreedyApproach.pptx, slide 17",
+  },
+];
